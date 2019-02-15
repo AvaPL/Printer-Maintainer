@@ -36,7 +36,9 @@ void PrinterMaintainer::InitializeConfig()
 {
 	configFile.exceptions(std::ios_base::badbit | std::ios_base::failbit);
 	configFile.open(configFilename, std::ios::in);
-	configFile >> printToPrintTimeInDays >> printingCommand;
+	configFile >> printToPrintTimeInDays;
+	configFile.get(); //Gets newline character.
+	std::getline(configFile, printingCommand);
 	configFile.close();
 }
 
